@@ -1,7 +1,7 @@
 ##  Stream-based application using Akka Stream and Kafka
 
 #### Steps for running the app
-#####1. First run start the zookeeper using the below command
+##### 1.First run start the zookeeper using the below command
 ```bash
 docker-compose up -d
 ```
