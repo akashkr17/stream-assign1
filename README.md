@@ -5,8 +5,8 @@
 ```bash
 docker-compose up -d
 ```
-#####2.Run the FileNotificationConsumer app 
+##### 2.Run the FileNotificationConsumer app 
 
-#####3.Run the FileReaderConsumer app 
+##### 3.Run the FileReaderConsumer app 
 
-#####4.Run the FileReaderProducer app 
+##### 4.Run the FileReaderProducer app 
