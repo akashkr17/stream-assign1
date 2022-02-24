@@ -1,0 +1,28 @@
+{
+  "trades": [
+    {
+      "symbol" : "ABC",
+      "price" : 18.0
+    },
+    {
+      "symbol" : "DEF",
+      "price" : 17.0
+    },
+    {
+      "symbol" : "KBC",
+      "price" : 12.0
+    },
+    {
+      "symbol" : "JBC",
+      "price" : 17.0
+    },
+    {
+      "symbol" : "XDC",
+      "price" : 10.0
+    },
+    {
+      "symbol" : "LCD",
+      "price" : 15.5
+    }
+  ]
+}
