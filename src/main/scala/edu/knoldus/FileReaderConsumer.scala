@@ -3,7 +3,7 @@ package edu.knoldus
 import java.nio.file.Paths
 import java.util.UUID
 
-import akka.NotUsed
+import akka.{Done, NotUsed}
 import akka.actor.ActorSystem
 import akka.kafka.ConsumerMessage.CommittableMessage
 import akka.kafka.scaladsl.{Consumer, Producer}
@@ -25,7 +25,7 @@ import org.apache.kafka.common.serialization.{
 }
 import spray.json._
 
-import scala.concurrent.ExecutionContextExecutor
+import scala.concurrent.{ExecutionContextExecutor, Future}
 import scala.io.BufferedSource
 import scala.util.Using
 
@@ -119,7 +119,7 @@ object FileReaderConsumer extends App {
   /**
     * Function produce message -file Location
     */
-  def produceFileLocMessage(filePath: String) = {
+  def produceFileLocMessage(filePath: String): Future[Done] = {
     val sourceData = List(filePath)
     Source(sourceData)
       .map(loc => new ProducerRecord[String, String]("fileNotification", loc))
