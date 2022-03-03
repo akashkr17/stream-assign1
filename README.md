@@ -6,7 +6,8 @@
 docker-compose up -d
 
 ```
-##### 2.Run the CombinedFileConsumer app 
-##### 3.Run the FileNotificationConsumer app 
-##### 4.Run the FileReaderConsumer app 
-##### 5.Run the FileReaderProducer app 
+##### 2.Run the RandomFileGenerator app 
+##### 3.Run the CombinedFileConsumer app 
+##### 4.Run the FileNotificationConsumer app 
+##### 5.Run the FileReaderConsumer app 
+##### 6.Run the FileReaderProducer app 
