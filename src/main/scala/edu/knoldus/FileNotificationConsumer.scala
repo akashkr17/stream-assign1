@@ -11,7 +11,7 @@ import akka.stream.scaladsl.{FileIO, Flow, Sink, Source}
 import akka.stream.{ActorMaterializer, IOResult, Materializer}
 import akka.util.ByteString
 import com.typesafe.config.{Config, ConfigFactory}
-import edu.knoldus.TradesFormat._
+
 import org.apache.kafka.clients.producer.ProducerRecord
 import org.apache.kafka.common.serialization.{
   StringDeserializer,
@@ -23,7 +23,7 @@ import scala.concurrent.duration._
 import scala.concurrent.{ExecutionContextExecutor, Future}
 import scala.io.BufferedSource
 import scala.util.Using
-object FileNotificationConsumer extends App {
+object FileNotificationConsumer extends App with TradesFormat {
   implicit val system: ActorSystem = ActorSystem("consumer-sys")
   implicit val mat: Materializer = ActorMaterializer()
   implicit val ec: ExecutionContextExecutor = system.dispatcher
@@ -99,7 +99,7 @@ object FileNotificationConsumer extends App {
           SameTrade(sameTradeTuple._1, sameTradeTuple._2))
       )
       val uuid = UUID.randomUUID().toString
-      val filePath = Paths.get(s"src/main/resources/$uuid")
+      val filePath = Paths.get(s"src/main/resources/combine-file/$uuid")
       println(filePath)
       Source
         .single(ByteString(cd.toJson.toString))

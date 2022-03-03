@@ -6,11 +6,11 @@ case class Trades(trades: List[Trade])
 case class Trade(symbol: String, price: Double)
 case class FileInfo(fileLocation: String, timestamp: Long)
 
-case class SameTrade(symbol: String, price: List[Prices])
+case class SameTrade(symbol: String, prices: List[Prices])
 case class Prices(price: Double, timestamp: Long)
 case class CombineTrades(trades: List[SameTrade])
 
-object TradesFormat extends DefaultJsonProtocol {
+trait TradesFormat extends DefaultJsonProtocol {
 
   implicit val tradeFormat: RootJsonFormat[Trade] = jsonFormat2(Trade)
   implicit val tradesFormat: RootJsonFormat[Trades] = jsonFormat1(Trades)

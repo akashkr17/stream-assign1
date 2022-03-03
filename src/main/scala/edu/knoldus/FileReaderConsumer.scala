@@ -17,7 +17,6 @@ import akka.stream.scaladsl.{FileIO, Flow, Sink, Source}
 import akka.stream.{ActorMaterializer, IOResult, Materializer}
 import akka.util.ByteString
 import com.typesafe.config.{Config, ConfigFactory}
-import edu.knoldus.TradesFormat._
 import org.apache.kafka.clients.producer.ProducerRecord
 import org.apache.kafka.common.serialization.{
   StringDeserializer,
@@ -29,7 +28,7 @@ import scala.concurrent.{ExecutionContextExecutor, Future}
 import scala.io.BufferedSource
 import scala.util.Using
 
-object FileReaderConsumer extends App {
+object FileReaderConsumer extends App with TradesFormat{
   implicit val system: ActorSystem = ActorSystem("consumer-sys")
   implicit val mat: Materializer = ActorMaterializer()
   implicit val ec: ExecutionContextExecutor = system.dispatcher
@@ -106,7 +105,7 @@ object FileReaderConsumer extends App {
 
     Flow[ByteString].mapAsync(parallelism = 4) { s ⇒
       val uuid = UUID.randomUUID().toString
-      val filePath = Paths.get(s"src/main/resources/$uuid")
+      val filePath = Paths.get(s"src/main/resources/filter-files/$uuid")
       Source.single(s).runWith(FileIO.toPath(filePath)).map { response =>
         if (response.status.isSuccess) {
           produceFileLocMessage(filePath.toString)
