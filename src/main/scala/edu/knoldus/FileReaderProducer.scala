@@ -27,8 +27,10 @@ object FileReaderProducer extends App {
     ProducerSettings(producerConfig, new StringSerializer, new StringSerializer)
   def getListOfFiles(dir: String): List[String] = {
     val file = new File(dir)
-    file.listFiles.filter(_.isFile)
-      .map(_.getPath).toList
+    file.listFiles
+      .filter(_.isFile)
+      .map(_.getPath)
+      .toList
   }
 
   /***
@@ -38,8 +40,10 @@ object FileReaderProducer extends App {
     val filesPath = List("src/main/resources/newData.json",
                          "src/main/resources/newData1.json",
                          "src/main/resources/newData2.json")
-    println(getListOfFiles("/home/knoldus/AkashKumar/streams-assignment/stream-assign1/src/main/resources/trades-files"))
-    Source(getListOfFiles("/home/knoldus/AkashKumar/streams-assignment/stream-assign1/src/main/resources/trades-files"))
+    println(getListOfFiles(
+      "/home/knoldus/AkashKumar/streams-assignment/stream-assign1/src/main/resources/trades-files"))
+    Source(getListOfFiles(
+      "/home/knoldus/AkashKumar/streams-assignment/stream-assign1/src/main/resources/trades-files"))
       .map(path => new ProducerRecord[String, String]("fileReader", path))
       .runWith(Producer.plainSink(producerSettings))
   }

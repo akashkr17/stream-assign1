@@ -28,7 +28,7 @@ import scala.concurrent.{ExecutionContextExecutor, Future}
 import scala.io.BufferedSource
 import scala.util.Using
 
-object FileReaderConsumer extends App with TradesFormat{
+object FileReaderConsumer extends App with TradesFormat {
   implicit val system: ActorSystem = ActorSystem("consumer-sys")
   implicit val mat: Materializer = ActorMaterializer()
   implicit val ec: ExecutionContextExecutor = system.dispatcher

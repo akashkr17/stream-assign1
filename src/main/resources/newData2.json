@@ -1,5 +1,4 @@
-{
-  "trades": [
+{"trades": [
     {
       "symbol" : "ABC",
       "price" : 18.0
